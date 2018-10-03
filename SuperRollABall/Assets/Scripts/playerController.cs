@@ -29,4 +29,15 @@ public class playerController : MonoBehaviour {
         Camera.main.transform.position = rb.transform.position + offset;
        
     }
+    void OnTriggerEnter(Collider other) 
+        {
+        Debug.Log("Smack");
+        if (other.gameObject.tag == "Collectible") 
+        {
+            Destroy(other.gameObject);
+        }
+    }
 }
+
+
+
