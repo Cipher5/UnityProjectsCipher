@@ -5,12 +5,14 @@ using UnityEngine;
 public class playerController : MonoBehaviour {
 
     Rigidbody rb;
+	canvasController cc;
     Vector3 offset;
     public float moveSpeed = 1000f;
 
 	// Use this for initialization
 	void Start () {
         rb = this.GetComponent<Rigidbody>();
+		cc = GameObject.Find ("Canvas").GetComponent<canvasController>();
         offset = Camera.main.transform.position - rb.transform.position;
     }
 	
@@ -31,10 +33,11 @@ public class playerController : MonoBehaviour {
     }
     void OnTriggerEnter(Collider other) 
         {
-        Debug.Log("Smack");
+        
         if (other.gameObject.tag == "Collectible") 
         {
             Destroy(other.gameObject);
+			cc.IncreaseScore (50);
         }
     }
 }
