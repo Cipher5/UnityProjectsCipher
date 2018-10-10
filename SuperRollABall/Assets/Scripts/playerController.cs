@@ -36,8 +36,9 @@ public class playerController : MonoBehaviour {
         
         if (other.gameObject.tag == "Collectible") 
         {
-            Destroy(other.gameObject);
-			cc.IncreaseScore (50);
+            
+			cc.IncreaseScore (150);
+			other.GetComponent<collectiblesController> ().isCollected = true;
         }
     }
 }
