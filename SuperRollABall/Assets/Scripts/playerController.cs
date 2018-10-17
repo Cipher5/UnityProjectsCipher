@@ -8,12 +8,14 @@ public class playerController : MonoBehaviour {
 	canvasController cc;
     Vector3 offset;
     public float moveSpeed = 1000f;
+	Vector3 resetPosition;
 
 	// Use this for initialization
 	void Start () {
         rb = this.GetComponent<Rigidbody>();
 		cc = GameObject.Find ("Canvas").GetComponent<canvasController>();
         offset = Camera.main.transform.position - rb.transform.position;
+		resetPosition = rb.transform.position;
     }
 	
 	// Update is called once per frame
@@ -29,10 +31,22 @@ public class playerController : MonoBehaviour {
         rb.AddForce(forceVector);
 
         Camera.main.transform.position = rb.transform.position + offset;
+
+		if (this.transform.position.y < -0.7f) {
+			ReturnToCheckpoint ();
+		}
        
     }
     void OnTriggerEnter(Collider other) 
         {
+
+		if (other.gameObject.tag == "Checkpoint") 
+		{
+			if (resetPosition != other.transform.position) 
+			{
+				resetPosition = other.transform.position;
+			}
+		}
         
         if (other.gameObject.tag == "Collectible") 
         {
@@ -41,6 +55,11 @@ public class playerController : MonoBehaviour {
 			other.GetComponent<collectiblesController> ().isCollected = true;
         }
     }
+
+	void ReturnToCheckpoint ()
+	{
+		rb.transform.position = resetPosition;
+	}
 }
 
 
