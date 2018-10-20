@@ -9,6 +9,7 @@ public class playerController : MonoBehaviour {
     Vector3 offset;
     public float moveSpeed = 1000f;
 	Vector3 resetPosition;
+	bool canMove = true;
 
 	// Use this for initialization
 	void Start () {
@@ -21,14 +22,7 @@ public class playerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        float hdir = Input.GetAxisRaw("Horizontal");
-        float vdir = Input.GetAxisRaw("Vertical");
-
-        Vector3 directionVector = new Vector3(hdir, 0, vdir);
-        Vector3 unitVector = directionVector.normalized;
-        Vector3 forceVector = unitVector * moveSpeed * Time.deltaTime;
-
-        rb.AddForce(forceVector);
+		Move();
 
         Camera.main.transform.position = rb.transform.position + offset;
 
@@ -37,6 +31,23 @@ public class playerController : MonoBehaviour {
 		}
        
     }
+
+	void Move()
+	{
+		if (canMove) {
+
+			float hdir = Input.GetAxisRaw ("Horizontal");
+			float vdir = Input.GetAxisRaw ("Vertical");
+			float TimeToWaitInSeconds = 5f;
+
+			Vector3 directionVector = new Vector3 (hdir, 0, vdir);
+			Vector3 unitVector = directionVector.normalized;
+			Vector3 forceVector = unitVector * moveSpeed * Time.deltaTime;
+
+			rb.AddForce (forceVector);
+		}
+	}
+
     void OnTriggerEnter(Collider other) 
         {
 
@@ -54,11 +65,26 @@ public class playerController : MonoBehaviour {
 			cc.IncreaseScore (150);
 			other.GetComponent<collectiblesController> ().isCollected = true;
         }
+
+		if (other.gameObject.tag == "Hazard") {
+
+			Invoke ("ReturnToCheckpoint", 1.5f);
+			rb.velocity = new Vector3(0, 0, 0);
+			rb.AddForce (Vector3.up * 700f);
+			canMove = false;
+			ParticleSystem explode;
+			explode = other.GetComponent<ParticleSystem> ();
+			explode.Play ();
+			//rb.AddForce (this.transform.forward * -100f);
+
+
+		}
     }
 
 	void ReturnToCheckpoint ()
 	{
 		rb.transform.position = resetPosition;
+		canMove = true;
 	}
 }
 
