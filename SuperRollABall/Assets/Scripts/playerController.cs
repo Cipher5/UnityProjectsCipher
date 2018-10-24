@@ -38,7 +38,7 @@ public class playerController : MonoBehaviour {
 
 			float hdir = Input.GetAxisRaw ("Horizontal");
 			float vdir = Input.GetAxisRaw ("Vertical");
-			float TimeToWaitInSeconds = 5f;
+			//float TimeToWaitInSeconds = 5f;
 
 			Vector3 directionVector = new Vector3 (hdir, 0, vdir);
 			Vector3 unitVector = directionVector.normalized;
@@ -66,7 +66,7 @@ public class playerController : MonoBehaviour {
 			other.GetComponent<collectiblesController> ().isCollected = true;
         }
 
-		if (other.gameObject.tag == "Hazard") {
+		if (other.gameObject.tag == "LandMine") {
 
 			Invoke ("ReturnToCheckpoint", 1.5f);
 			rb.velocity = new Vector3(0, 0, 0);
@@ -78,6 +78,25 @@ public class playerController : MonoBehaviour {
 			//rb.AddForce (this.transform.forward * -100f);
 
 
+		}
+
+		if (other.gameObject.tag == "LandmineSmokeEffect") {
+			ParticleSystem smoke;
+			smoke = other.GetComponent<ParticleSystem> ();
+			smoke.Play ();
+		}
+
+		if (other.gameObject.tag == "Boost") {
+			rb.velocity = new Vector3 (0, 0, 0);
+			rb.AddForce (Vector3.forward * 10000f);
+			cc.IncreaseScore (400);
+		}
+		if (other.gameObject.tag == "Blade") {
+			Invoke ("ReturnToCheckpoint", 1.5f);
+			rb.velocity = new Vector3 (0, 0, 0);
+			rb.AddForce (Vector3.left * 1000f);
+			rb.AddForce (Vector3.up * 300f);
+			canMove = false;
 		}
     }
 
