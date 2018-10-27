@@ -92,11 +92,20 @@ public class playerController : MonoBehaviour {
 			cc.IncreaseScore (400);
 		}
 		if (other.gameObject.tag == "Blade") {
-			Invoke ("ReturnToCheckpoint", 1.5f);
+			Invoke ("ReturnToCheckpoint", .5f);
 			rb.velocity = new Vector3 (0, 0, 0);
 			rb.AddForce (Vector3.left * 1000f);
 			rb.AddForce (Vector3.up * 300f);
 			canMove = false;
+			ParticleSystem blood;
+			blood = GetComponent<ParticleSystem> ();
+			blood.Play ();
+		}
+		if (other.gameObject.tag == "HammerHead") {
+			canMove = false;
+			rb.velocity = new Vector3 (0, 0, 0);
+			rb.AddForce (Vector3.back * 2000f);
+
 		}
     }
 

@@ -11,6 +11,8 @@ TagManager:
   - LandmineSmokeEffect
   - Boost
   - Blade
+  - HammerHead
+  - TestBase
   layers:
   - Default
   - TransparentFX

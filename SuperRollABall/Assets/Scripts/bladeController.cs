@@ -18,10 +18,8 @@ public class bladeController : MonoBehaviour {
 	void OnTriggerEnter(Collider other)
 	{
 
-		if (other.gameObject.tag == "Player") {
-			
 
-		}
 	}
 
 }
+//ILIKETRAINSLOL
