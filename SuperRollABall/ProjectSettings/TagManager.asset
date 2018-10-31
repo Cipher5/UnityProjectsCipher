@@ -13,6 +13,8 @@ TagManager:
   - Blade
   - HammerHead
   - TestBase
+  - CrusherTrigger2
+  - CrusherTrigger1
   layers:
   - Default
   - TransparentFX

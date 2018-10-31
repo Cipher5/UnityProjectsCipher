@@ -5,29 +5,41 @@ using UnityEngine;
 public class testScript : MonoBehaviour {
 
 	Transform thing;
-	bool spikes;
+	bool upSpikes;
+	bool downSpikes;
 
 
 	// Use this for initialization
 	void Start () {
 		thing = this.GetComponent <Transform> ();
-		spikes = false;
+		upSpikes = false;
+		downSpikes = false;
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (spikes) {
+		if (upSpikes) {
 			Vector3 upVector = new Vector3 (0, 1, 0);
 			thing.transform.Translate (upVector);
+		}
+		if (downSpikes) {
+			Vector3 downVector = new Vector3 (0, -1, 0);
+			thing.transform.Translate (downVector);
 		}
 	}
 
 	void OnTriggerEnter (Collider other) {
 		
-		if (other.gameObject.tag == "Player") {
-			spikes = true;
+		if (other.gameObject.tag == "CrusherTrigger1") {
+			upSpikes = true;
+			downSpikes = false;
 
+
+		}
+		if (other.gameObject.tag == "CrusherTrigger2") {
+			upSpikes = false;
+			downSpikes = true;
 
 		}
 	}

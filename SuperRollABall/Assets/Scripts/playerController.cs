@@ -107,6 +107,12 @@ public class playerController : MonoBehaviour {
 			rb.AddForce (Vector3.back * 2000f);
 
 		}
+		if (other.gameObject.tag == "CrusherBottom") {
+			canMove = false;
+			Invoke ("ReturnToCheckpoint", .5f);
+			rb.velocity = new Vector3 (0, 0, 0);
+			rb.AddForce (Vector3.up * 600f);
+		}
     }
 
 	void ReturnToCheckpoint ()
