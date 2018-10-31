@@ -111,7 +111,13 @@ public class playerController : MonoBehaviour {
 			canMove = false;
 			Invoke ("ReturnToCheckpoint", .5f);
 			rb.velocity = new Vector3 (0, 0, 0);
-			rb.AddForce (Vector3.up * 600f);
+			rb.AddForce (Vector3.up * 200f);
+		}
+		if (other.gameObject.tag == "CrusherTop") {
+			canMove = false;
+			Invoke ("ReturnToCheckpoint", .5f);
+			rb.velocity = new Vector3 (0, 0, 0);
+			rb.AddForce (Vector3.up * 500f);
 		}
     }
 

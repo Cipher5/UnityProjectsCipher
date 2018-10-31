@@ -20,11 +20,11 @@ public class testScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (upSpikes) {
-			Vector3 upVector = new Vector3 (0, 1, 0);
+			Vector3 upVector = new Vector3 (0f, 0.8f, 0f);
 			thing.transform.Translate (upVector);
 		}
 		if (downSpikes) {
-			Vector3 downVector = new Vector3 (0, -1, 0);
+			Vector3 downVector = new Vector3 (0f, -0.1f, 0f);
 			thing.transform.Translate (downVector);
 		}
 	}
