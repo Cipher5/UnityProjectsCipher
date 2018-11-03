@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class testScript : MonoBehaviour {
+public class crusherController : MonoBehaviour {
 
 	Transform thing;
 	bool upSpikes;

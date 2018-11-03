@@ -17,6 +17,9 @@ TagManager:
   - CrusherTrigger1
   - CrusherBottom
   - CrusherTop
+  - SawBlade
+  - SawBladeRightTrigger
+  - SawBladeLeftTrigger
   layers:
   - Default
   - TransparentFX

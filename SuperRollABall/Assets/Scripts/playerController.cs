@@ -119,6 +119,14 @@ public class playerController : MonoBehaviour {
 			rb.velocity = new Vector3 (0, 0, 0);
 			rb.AddForce (Vector3.up * 500f);
 		}
+		if (other.gameObject.tag == "SawBlade") {
+			Invoke ("ReturnToCheckpoint", .5f);
+			rb.velocity = new Vector3 (0, 0, 0);
+			canMove = false;
+			ParticleSystem blood;
+			blood = GetComponent<ParticleSystem> ();
+			blood.Play ();
+		}
     }
 
 	void ReturnToCheckpoint ()
