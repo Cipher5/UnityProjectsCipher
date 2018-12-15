@@ -8,7 +8,7 @@ public class sawController : MonoBehaviour {
 	//public float speed = 0f;
 	bool sawLeft;
 	bool sawRight;
-	public GameObject fartOrange;
+
 
 	// Use this for initialization
 	void Start () {
@@ -20,19 +20,16 @@ public class sawController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (Input.GetMouseButtonDown(0)) {
-			Instantiate (fartOrange, transform.position, transform.rotation, null);
 
+
+		if (sawLeft) {
+			Vector3 leftVector = new Vector3 (0.1f, 0f, 0f);
+			thing.transform.Translate (leftVector);
 		}
-
-//		if (sawLeft) {
-//			Vector3 leftVector = new Vector3 (0.1f, 0f, 0f);
-//			thing.transform.Translate (leftVector);
-//		}
-//		if (sawRight) {
-//			Vector3 rightVector = new Vector3 (-0.1f, 0f, 0f);
-//			thing.transform.Translate (rightVector);
-//		}
+		if (sawRight) {
+			Vector3 rightVector = new Vector3 (-0.1f, 0f, 0f);
+			thing.transform.Translate (rightVector);
+		}
 		//transform.Rotate (Vector3.up * Time.deltaTime);
 	}
 	void OnTriggerEnter (Collider other) {

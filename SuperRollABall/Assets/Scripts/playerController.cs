@@ -8,8 +8,11 @@ public class playerController : MonoBehaviour {
 	canvasController cc;
     Vector3 offset;
     public float moveSpeed = 1000f;
+
 	Vector3 resetPosition;
 	bool canMove = true;
+	public GameObject fartOrange;
+	public GameObject fartHog;
 
 	// Use this for initialization
 	void Start () {
@@ -24,10 +27,24 @@ public class playerController : MonoBehaviour {
 
 		Move();
 
+	
+
         Camera.main.transform.position = rb.transform.position + offset;
 
 		if (this.transform.position.y < -0.7f) {
 			ReturnToCheckpoint ();
+		}
+		if (Input.GetMouseButtonDown(0)) {
+			Instantiate (fartOrange, this.transform.position, this.transform.rotation, null);
+
+		}
+		if (Input.GetMouseButtonDown (1)) {
+			Instantiate (fartHog, this.transform.position, this.transform.rotation, null);
+
+		}
+		if (Input.GetMouseButtonDown (2)) {
+			rb.AddForce (Vector3.forward * 10000f);
+		
 		}
        
     }
