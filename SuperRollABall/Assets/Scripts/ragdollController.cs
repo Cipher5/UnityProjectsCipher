@@ -20,11 +20,13 @@ public class ragdollController : MonoBehaviour
     {
         Debug.Log("sda");
         this.gameObject.SetActive(false);
-        Instantiate(ragdoll, this.transform.position, this.transform.rotation, null);
+        
 
         if (other.gameObject.tag == "ragdollTrigger")
         {
+            this.gameObject.SetActive(false);
             Debug.Log("sda");
+            this.gameObject.SetActive(false);
             this.gameObject.SetActive(false);
             Instantiate(ragdoll, this.transform.position, this.transform.rotation, null);
         }
