@@ -20,6 +20,7 @@ TagManager:
   - SawBlade
   - SawBladeRightTrigger
   - SawBladeLeftTrigger
+  - ragdollTrigger
   layers:
   - Default
   - TransparentFX
