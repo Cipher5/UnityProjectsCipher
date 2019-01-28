@@ -18,8 +18,7 @@ public class ragdollController : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("sda");
-        this.gameObject.SetActive(false);
+       
         
 
         if (other.gameObject.tag == "ragdollTrigger")
